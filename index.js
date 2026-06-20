@@ -22,7 +22,7 @@ if (inputs.includes('add')) {
   updateTask(fileDir, selectID, updatedTask);
 } else if (inputs.includes('delete')) {
   const selectID = inputs.at(inputs.indexOf('delete') + 1);
-  deleteTask(fileDir, id);
+  deleteTask(fileDir, selectID);
 }
 
 if (inputs.at(0).startsWith('mark')) {

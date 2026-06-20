@@ -3,7 +3,8 @@ import fs from 'node:fs/promises';
 export async function addTask(fileDir, task) {
   if (task) {
     const fileData = JSON.parse(await fs.readFile(fileDir, 'utf-8'));
-    const serialNUM = fileData.length + 1;
+    const taskIDsArray = fileData.map(ele => ele.id);
+    const serialNUM = Math.max(...taskIDsArray) + 1;
     const obj = {
       id: serialNUM,
       description: task,
