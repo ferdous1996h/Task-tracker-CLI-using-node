@@ -1,7 +1,7 @@
 # Task tracker CLI
 
 ## Description
-- This is a task from Roadmap.sh. The project link is ![Here](https://roadmap.sh/projects/task-tracker)
+- This is a task from Roadmap.sh. The project link is [Here](https://roadmap.sh/projects/task-tracker)
 - Task tracker is a project used to track and manage your tasks. In this task, I
   build a simple command line interface (CLI) to track what you need to do, what
   you have done, and what you are currently working on.
