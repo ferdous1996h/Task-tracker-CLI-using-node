@@ -15,7 +15,6 @@ const fileDir = path.join(dirName, 'tasks.json');
 async function ensureFileExist(path) {
   try {
     await fs.access(path);
-    console.log('File exist');
   } catch {
     console.log('Creating file...');
     await fs.writeFile(path, '[]');
@@ -45,7 +44,7 @@ if (inputs.at(0).startsWith('mark')) {
   statusUpdate(statusName, targetID, fileDir);
 }
 if (inputs.length === 1 && inputs.at(0) === 'list') {
-  const fileData = await fs.readFile(fileDir, 'utf-8');
+  const fileData = JSON.parse(await fs.readFile(fileDir, 'utf-8'));
   console.table(fileData);
 }
 if (inputs.at(0).startsWith('list')) {
