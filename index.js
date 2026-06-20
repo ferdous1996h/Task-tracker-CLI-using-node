@@ -12,6 +12,18 @@ const inputs = argv.slice(2);
 
 const fileDir = path.join(dirName, 'tasks.json');
 
+async function ensureFileExist(path) {
+  try {
+    await fs.access(path);
+    console.log('File exist');
+  } catch {
+    console.log('Creating file...');
+    await fs.writeFile(path, '[]');
+    console.log('File created');
+  }
+}
+await ensureFileExist(fileDir);
+
 if (inputs.includes('add')) {
   const task = inputs.at(inputs.indexOf('add') + 1);
   addTask(fileDir, task);
@@ -34,10 +46,10 @@ if (inputs.at(0).startsWith('mark')) {
 }
 if (inputs.length === 1 && inputs.at(0) === 'list') {
   const fileData = await fs.readFile(fileDir, 'utf-8');
-  console.log(fileData);
+  console.table(fileData);
 }
 if (inputs.at(0).startsWith('list')) {
-  const listType = inputs.at(1)
+  const listType = inputs.at(1);
   const fileData = JSON.parse(await fs.readFile(fileDir, 'utf-8'));
   if (listType === 'todo') {
     const newData = fileData.filter(ele => ele.status === 'todo');
